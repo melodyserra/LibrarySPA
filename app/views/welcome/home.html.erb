@@ -1,8 +1,36 @@
 <h1>Library</h1>
-<h2>AJAX it up</h2>
+<h2>All Books:</h2>
 <!-- Container to append loaded books it to -->
 <div id="container"></div>
 
+  <ul class="myBooks"></ul>
+
+
+		<h2>Add a book</h2>
+		  <%= form_tag('javascript:void(0);', class: "addBook") %>
+		  <p>
+		    <%= label_tag(:title, "Book title") %>
+		    <%= text_field_tag :title, nil, :class => 'bookTitle', autofocus: true %>
+		  </p>
+		  <p>
+		    <%= label_tag(:author, "Author name") %>
+		    <%= text_field_tag :author, nil, :class => 'authorName' %>
+		  </p>
+		  <p>
+		  <%= submit_tag "Add" , class: "btn btn-info" %>
+		  </p>
+
+</div>
+
+
 <script type="text/javascript">
-  Library.loadBooks();
+  $(document).ready(function(){
+    Library.loadBooks();
+
+    $('.addBook').on("submit", function(event){
+      event.preventDefault();
+      // event can be e 
+      Library.addBook();
+    });
+  });
 </script>
